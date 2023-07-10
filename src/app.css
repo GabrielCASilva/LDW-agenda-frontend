@@ -1,0 +1,34 @@
+.agenda {
+  width: 1200px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 10px;
+  grid-template-areas:
+    "calendar details"
+    "registers details";
+}
+
+.calendar {
+  grid-area: calendar;
+}
+
+.registers {
+  grid-area: registers;
+}
+
+.register_details {
+  grid-area: details;
+}
+
+.list {
+  padding: 0;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
