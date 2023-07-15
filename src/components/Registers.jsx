@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import PropTypes from 'prop-types';
 import { deleteRegister, getRegisters } from "../api/server";
 import { Button } from "antd";
+import { success } from "../handler/messages";
 
 const Registers = (props) => {
   const {
     today,
     date,
     registers,
+    message,
     handleClick,
     handleCreate,
     handleRegisters,
@@ -21,8 +23,11 @@ const Registers = (props) => {
   }
 
   const handleDelete = async (id) => {
+    setLoading(true)
     const status = await deleteRegister(id);
+    if(status) setLoading(false)
     if(status === 204){
+      success(message, "Agendamento deletado com sucesso")
       handleRegisters((registers) => {
         return registers.filter((register) => register.id !== id)
       })
@@ -87,6 +92,7 @@ const Registers = (props) => {
 }
 
 Registers.propTypes = {
+  message: PropTypes.object,
   today: PropTypes.string,
   date: PropTypes.string,
   registers: PropTypes.array,

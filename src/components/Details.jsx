@@ -7,13 +7,14 @@ import { useState } from 'react';
 import { Spin } from 'antd';
 
 const Details = (props) => {
-  const { register, date, message } = props;
+  const { register, date, message, handleRegisters } = props;
   const [loading, setLoading] = useState(false);
 
   const handleFinish = async (values) => {
     setLoading(true)
     const editedValues = {...values, data: date}
     const data = await putRegister(register.id, editedValues);
+    handleRegisters((registers) => [...registers].map((r) => r.id === data.id ? data: r))
 
     if(data) setLoading(false)
 
@@ -49,7 +50,8 @@ const Details = (props) => {
 Details.propTypes = {
   register: PropTypes.object,
   date: PropTypes.string,
-  message: PropTypes.object
+  message: PropTypes.object,
+  handleRegisters: PropTypes.func
 }
  
 export default Details;

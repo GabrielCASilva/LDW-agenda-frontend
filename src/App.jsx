@@ -50,6 +50,7 @@ function App() {
           today={today}
           date={date} 
           registers={registers}
+          message={messageApi}
           handleRegisters={handleRegisters}
           handleClick={handleSelectRegister}
           handleCreate={handleCreateRegister}
@@ -67,6 +68,7 @@ function App() {
             key={date}
             date={date}
             register={register}
+            handleRegisters={handleRegisters}
             message={messageApi}
           />
         }
