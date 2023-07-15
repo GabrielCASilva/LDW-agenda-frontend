@@ -19,19 +19,51 @@ const Form = (props) => {
       layout="vertical"
       onFinish={onFinish}
     >
-      <AntForm.Item label="Nome" name="nome">
+      <AntForm.Item 
+        label="Nome" name="nome"
+        rules={[
+          {
+            required: true,
+            message: "Insira o nome do agendado"
+          }
+        ]}
+      >
         <Input />
       </AntForm.Item>
 
-      <AntForm.Item label="Compromisso" name="compromisso">
+      <AntForm.Item 
+        label="Compromisso" name="compromisso"
+        rules={[
+          {
+            required: true,
+            message: "Insira o compromisso do agendamento"
+          }
+        ]}
+      >
         <TextArea />
       </AntForm.Item>
 
-      <AntForm.Item label="Horario" name="horario">
+      <AntForm.Item 
+        label="Horario" name="horario"
+        rules={[
+          {
+            required: true,
+            message: "Insira o horário do agendamento"
+          }
+        ]}
+      >
         <Input />
       </AntForm.Item>
 
-      <AntForm.Item label="Telefone" name="telefone">
+      <AntForm.Item 
+        label="Telefone" name="telefone"
+        rules={[
+          {
+            required: true,
+            message: "Insira o horário do agendamento"
+          }
+        ]}
+      >
         <Input />
       </AntForm.Item>
 

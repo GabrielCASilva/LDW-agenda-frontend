@@ -4,8 +4,9 @@ import { deleteRegister, getRegisters } from "../api/server";
 import { Button } from "antd";
 
 const Registers = (props) => {
-  const { 
-    date, 
+  const {
+    today,
+    date,
     registers,
     handleClick,
     handleCreate,
@@ -36,8 +37,8 @@ const Registers = (props) => {
       try{
         const data = await getRegisters(`?data=${date}`);
         handleRegisters(data ? data : []);
-      }catch(error){
-        console.log(error);
+      }catch(e){
+        console.log(e);
       }
       finally{
         setLoading(false);
@@ -51,14 +52,18 @@ const Registers = (props) => {
   return ( 
     <section className="registers">
       <header className="flex">
-        <h2>Registros</h2>
-        <Button type="primary" onClick={() => handleCreate(true)}>
+        <h2>Agendamentos</h2>
+        <Button 
+          type="primary" 
+          disabled={date < today}
+          onClick={() => handleCreate(true)}
+        >
           Novo
         </Button>
       </header>
       {loading && <p>Carregando...</p>}
 
-      {!loading && registers.length === 0 && <p>Nenhum registro encontrado</p>}
+      {!loading && registers.length === 0 && <p>Nenhum agendamento encontrado</p>}
 
       {!loading && registers.length > 0 && (
         <>
@@ -82,6 +87,7 @@ const Registers = (props) => {
 }
 
 Registers.propTypes = {
+  today: PropTypes.string,
   date: PropTypes.string,
   registers: PropTypes.array,
   handleClick: PropTypes.func,
